@@ -32,7 +32,9 @@ extern int SDL_main(int argc, char *argv[]);
     }
     //NSLog(@"Start dosbox in new thread");
     started = YES;
-    [NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
+    // 백그라운드 실행시 크래쉬 발생
+    //[NSThread detachNewThreadSelector:@selector(run) toTarget:self withObject:nil];
+    [self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
 }
 
 - (void) run {
